@@ -1,7 +1,6 @@
 # wordpress directories
 wp-admin/
-wp-content/
-wp-includes/
+
 # PHP Files only served from server
 *.php 
 
