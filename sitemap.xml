@@ -4,37 +4,57 @@
   
   <url>
     <loc>https://datalovers.xyz/categories/</loc>
-    <lastmod>2020-09-09T16:00:24+08:00</lastmod>
+    <lastmod>2020-09-15T18:08:05+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://datalovers.xyz/post/my-first-post/</loc>
-    <lastmod>2020-09-09T16:00:24+08:00</lastmod>
+    <loc>https://datalovers.xyz/tags/data-sources/</loc>
+    <lastmod>2020-09-15T18:08:05+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://datalovers.xyz/tags/excel/</loc>
+    <lastmod>2020-09-15T18:08:05+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://datalovers.xyz/categories/excel/</loc>
+    <lastmod>2020-09-15T18:08:05+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://datalovers.xyz/post/</loc>
-    <lastmod>2020-09-09T16:00:24+08:00</lastmod>
+    <lastmod>2020-09-15T18:08:05+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://datalovers.xyz/tags/power-query/</loc>
+    <lastmod>2020-09-15T18:08:05+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://datalovers.xyz/categories/power-query/</loc>
+    <lastmod>2020-09-15T18:08:05+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://datalovers.xyz/post/power-query-issues-with-local-files-as-data-sources/</loc>
+    <lastmod>2020-09-15T18:08:05+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://datalovers.xyz/tags/problems-with-data-updates/</loc>
+    <lastmod>2020-09-15T18:08:05+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://datalovers.xyz/tags/</loc>
-    <lastmod>2020-09-09T16:00:24+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://datalovers.xyz/tags/test/</loc>
-    <lastmod>2020-09-09T16:00:24+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://datalovers.xyz/categories/testing/</loc>
-    <lastmod>2020-09-09T16:00:24+08:00</lastmod>
+    <lastmod>2020-09-15T18:08:05+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://datalovers.xyz/</loc>
-    <lastmod>2020-09-09T16:00:24+08:00</lastmod>
+    <lastmod>2020-09-15T18:08:05+08:00</lastmod>
   </url>
   
 </urlset>

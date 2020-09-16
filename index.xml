@@ -5,18 +5,19 @@
     <description>Recent content on Two geeks in love... </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 09 Sep 2020 16:00:24 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 15 Sep 2020 18:08:05 +0800</lastBuildDate>
     
         <atom:link href="https://datalovers.xyz/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>My First Post</title>
-      <link>https://datalovers.xyz/post/my-first-post/</link>
-      <pubDate>Wed, 09 Sep 2020 16:00:24 +0800</pubDate>
+      <title>Power Query - Switching from External to Internal Data Sources</title>
+      <link>https://datalovers.xyz/post/power-query-issues-with-local-files-as-data-sources/</link>
+      <pubDate>Tue, 15 Sep 2020 18:08:05 +0800</pubDate>
       
-      <guid>https://datalovers.xyz/post/my-first-post/</guid>
-      <description>Just a test </description>
+      <guid>https://datalovers.xyz/post/power-query-issues-with-local-files-as-data-sources/</guid>
+      <description>Power Query is a very versatile way to manage data in Excel. Designing your data workflows to make the most efficient use of Power Query can be challenging though.
+Recently, I needed to built a very simple reporting tool for keeping track on some budget numbers. I had one excel file with raw data called &amp;ldquo;Input&amp;rdquo;, and I built a data analysis workflow on top of it via power query in another file called &amp;ldquo;output&amp;rdquo;.</description>
     </item>
     
   </channel>

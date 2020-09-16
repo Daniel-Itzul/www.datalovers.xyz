@@ -6,17 +6,44 @@
     <description>Recent content in Tags on Two geeks in love... </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 09 Sep 2020 16:00:24 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 15 Sep 2020 18:08:05 +0800</lastBuildDate>
     
 	<atom:link href="https://datalovers.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Test</title>
-      <link>https://datalovers.xyz/tags/test/</link>
-      <pubDate>Wed, 09 Sep 2020 16:00:24 +0800</pubDate>
+      <title>Data Sources</title>
+      <link>https://datalovers.xyz/tags/data-sources/</link>
+      <pubDate>Tue, 15 Sep 2020 18:08:05 +0800</pubDate>
       
-      <guid>https://datalovers.xyz/tags/test/</guid>
+      <guid>https://datalovers.xyz/tags/data-sources/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Excel</title>
+      <link>https://datalovers.xyz/tags/excel/</link>
+      <pubDate>Tue, 15 Sep 2020 18:08:05 +0800</pubDate>
+      
+      <guid>https://datalovers.xyz/tags/excel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Power Query</title>
+      <link>https://datalovers.xyz/tags/power-query/</link>
+      <pubDate>Tue, 15 Sep 2020 18:08:05 +0800</pubDate>
+      
+      <guid>https://datalovers.xyz/tags/power-query/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Problems with data updates</title>
+      <link>https://datalovers.xyz/tags/problems-with-data-updates/</link>
+      <pubDate>Tue, 15 Sep 2020 18:08:05 +0800</pubDate>
+      
+      <guid>https://datalovers.xyz/tags/problems-with-data-updates/</guid>
       <description></description>
     </item>
     
