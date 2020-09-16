@@ -1,0 +1,340 @@
+
+  
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="siteBaseUrl" content="https://datalovers.xyz/">
+    <meta name="author" content="">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="Hugo 0.74.3" />
+    <title>
+        
+           
+               Power Query - Switching from External to Internal Data Sources &vert; Two geeks in love... 
+           
+        
+    </title>
+    <meta name="description" content="Power Query - Switching from External to Internal Data Sources - %!s(&lt;nil&gt;)">
+    <meta itemprop="name" content="Power Query - Switching from External to Internal Data Sources">
+    <meta itemprop="description" content="Power Query - Switching from External to Internal Data Sources - %!s(&lt;nil&gt;)">
+    <meta property="og:title" content="Power Query - Switching from External to Internal Data Sources">
+    <meta property="og:description" content="Power Query - Switching from External to Internal Data Sources - %!s(&lt;nil&gt;)">
+    <meta property="og:image" content="https://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?size=200">
+    <meta property="og:url" content="https://datalovers.xyz/post/power-query-issues-with-local-files-as-data-sources/">
+    <meta property="og:site_name" content="Two geeks in love... ">
+    <meta property="og:type" content="article">
+
+    
+
+
+    <script src="/modernizr-simple.js"></script>
+
+    
+    <link href="/post/power-query-issues-with-local-files-as-data-sources/" rel="alternate" type="application/rss+xml" title="Two geeks in love... " />
+    <link href="/post/power-query-issues-with-local-files-as-data-sources/" rel="feed" type="application/rss+xml" title="Two geeks in love... " />
+    
+
+    
+
+    <link rel="stylesheet" href="https://datalovers.xyz/theme.css">
+
+    
+
+    
+</head>
+
+<body class="bilberry-hugo-theme">
+
+    
+    <nav>
+
+    <div class="container">
+        <ul class="topnav">
+            
+        </ul>
+
+        
+    </div>
+</nav>
+
+
+    
+    <header>
+
+        <div class="container">
+            <div class="logo">
+                <a href="/" class="logo">
+                    
+                        <img src="/static/img/logo.png" alt="">
+                    
+
+                    <span class="overlay"><i class="fa fa-home"></i></span>
+                </a>
+            </div>
+            <div class="titles">
+                <h3 class="title">
+                    <a href="/">
+                        Two geeks in love... 
+                    </a>
+                </h3>
+
+                
+            </div>
+
+            
+
+            
+                <div class="toggler">
+            
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </div>
+            </div>
+    </header>
+
+
+    <div class="main container">
+        
+    <div class="article-wrapper u-cf single">
+        
+            <a class="bubble" href="https://datalovers.xyz/post/power-query-issues-with-local-files-as-data-sources/">
+    <i class="fas fa-fw fa-pencil-alt"></i>
+</a>
+
+<article class="default article">
+    
+
+    <div class="content">
+    <h1 class="article-title">
+        <a href="https://datalovers.xyz/post/power-query-issues-with-local-files-as-data-sources/">
+            Power Query - Switching from External to Internal Data Sources
+        </a>
+    </h1>
+
+    <div class="meta">
+        
+            
+                <span class="date moment">2020-09-15</span>
+            
+        
+
+        
+
+        
+            <span class="categories">
+                
+                    
+                    
+                        <a href="https://datalovers.xyz/categories/power-query/">Power Query</a>
+                    
+                
+                    
+                    
+                        <a href="https://datalovers.xyz/categories/excel/">Excel</a>
+                    
+                
+            </span>
+        
+
+        
+            <span class="author">
+                
+                
+            </span>
+        
+    </div>
+
+    
+        <p>Power Query is a very versatile way to manage data in Excel. Designing your data workflows to make the most efficient use of Power Query can be challenging though.</p>
+<p>Recently, I needed to built a very simple reporting tool for keeping track on some budget numbers. I had one excel file with raw data called &ldquo;Input&rdquo;, and I built a data analysis workflow on top of it via power query in another file called &ldquo;output&rdquo;.</p>
+<p>I tested the workflow and I was happy with the results, until I realized several of my colleagues would&rsquo;ve been updating the &ldquo;input&rdquo; file while others looked at the &ldquo;output&rdquo; reports. This would make my entire workflow crash because Power Query cannot run while external data files are open.</p>
+<p>If this happens to you, the solution is quite straight forward, merging your source and reporting files into one. However, implementing this solution when you already have data in the source file and the Power Query workflow built is a bit tricky. This post tackles this process.</p>
+<h2 id="changing-your-data-source-in-power-query">Changing your data source in Power Query</h2>
+<h3 id="steps-in-the-excel-ui">Steps in the Excel UI</h3>
+<ol>
+<li>Move the data from “input” file to “output” file.</li>
+<li>Format that data to a table, and name that table as “RawData”</li>
+<li>Within power query, change the “source” file path to the location of the current workbook which is the file “input”.</li>
+</ol>
+<p>I did all of the above.</p>
+<ul>
+<li>Original path to the data source - As external file</li>
+</ul>
+<p><img src="/static/img/postImg/JW01_01.png" alt="Original file path is indicating the input file"></p>
+<ul>
+<li>New path to the data source - In the same file the Power Query workflow is set</li>
+</ul>
+<p><img src="/static/img/postImg/JW01_02.png" alt="I then, redirect it to the file location of the output file"></p>
+<p>However, the results were not as expected, actually there were no results at all, since Power Query couldn&rsquo;t find the Data Source.</p>
+<p>After some digging I found the reason. Power Query not only needs to know what file contains your data, but also the table (sheet) in that file that contains your data, duh, I&rsquo;ve should have guessed that. Defining these attributes after your Power Query workflow is built is not as straigth forward though.</p>
+<p>Power Query runs the <a href="https://docs.microsoft.com/en-us/powerquery-m/">M Language</a> behind the scenes. M is a functional language, more on that on other articles (by my husband), this means that is designed to take inputs and produce outputs, much like excel formulas. One of the main inputs Power Query takes is the Source of the data.</p>
+<p>When you create your Power Query workflows Excel generates the M code for you automatically, and defines the data source from the inputs you provided at the time. When, as in our case, you want to make changes after your workflow is already built, you need to change the M code manually.</p>
+<h3 id="modifying-the-relevant-m-code">Modifying the relevant M code.</h3>
+<p>To acces the M code you need to go to Power Query&rsquo;s advanced editor.</p>
+<p><img src="/static/img/postImg/JW01_03.png" alt="Within Query Editor, you can find “Advanced Editor” under the Home ribbon. "></p>
+<p>Let&rsquo;s check what the code is doing.</p>
+<p><img src="/static/img/postImg/JW01_04.png" alt="Editor before changes"></p>
+<ul>
+<li>
+<p>The chunk from lines 1 to 5, that starts with the keyword &ldquo;let&rdquo; is creating four variables. Two of them define our data source and two of them what columns we are going to select and &ldquo;analyze&rdquo; respectively from the data source. For our purpose we care only about the ones that define our data source.</p>
+</li>
+<li>
+<p>Line 2 is defining a variable &ldquo;Source&rdquo; and pointing it to a path.</p>
+</li>
+<li>
+<p>Line 3 is defining what table (sheet) of that data source contains our data.</p>
+</li>
+<li>
+<p>We don&rsquo;t need this to be as convoluted as it looks right now. We need the &ldquo;Source&rdquo; to point to the table (sheet) that contains our data in the current workbook. So we write:</p>
+<p>Source= Excel.CurrentWorkbook(){[Name=&quot;RawData&rdquo;]}[Content]</p>
+</li>
+<li>
+<p>Since we are currently pointing to the workbook and table (sheet) in one single line, line 3 becomes redundant.</p>
+</li>
+</ul>
+<p><img src="/static/img/postImg/JW01_05.png" alt="Editor after changes"></p>
+<p>After the steps above, Power Query would be able to find our Data Source and seamlessly perform the workflow.</p>
+<p><img src="/static/img/postImg/JW01_06.png" alt="Final result"></p>
+
+    
+</div>
+
+    
+<div class="footer">
+
+
+    
+        <div class="tags">
+            <i class="fa fa-tags"></i>
+            <div class="links">
+                
+                    
+                    
+                    <a href="https://datalovers.xyz/tags/power-query/">Power Query</a>
+                    
+                
+                    
+                    
+                    <a href="https://datalovers.xyz/tags/excel/">Excel</a>
+                    
+                
+                    
+                    
+                    <a href="https://datalovers.xyz/tags/data-sources/">Data Sources</a>
+                    
+                
+                    
+                    
+                    <a href="https://datalovers.xyz/tags/problems-with-data-updates/">Problems with data updates</a>
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+</article>
+
+        
+    </div>
+
+    
+        <div id="comments-container">
+            
+            
+
+        </div>
+    
+
+    </div>
+
+    
+<footer>
+    <div class="container">
+
+        
+        <div class="recent-posts">
+            <strong>Latest posts</strong>
+            <ul>
+                
+                
+                    <li>
+                        <a href="https://datalovers.xyz/post/power-query-issues-with-local-files-as-data-sources/">Power Query - Switching from External to Internal Data Sources</a>
+                    </li>
+                
+            </ul>
+        </div>
+        
+
+        
+        <div class="categories">
+            <a href="/categories/"><strong>Categories</strong></a>
+            <ul>
+                
+                <li>
+                    <a href="/categories/excel">Excel
+                        (1)</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/power-query">Power query
+                        (1)</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+
+        <div class="right">
+            
+            <div class="external-profiles">
+                <strong>Social media</strong>
+
+                
+            </div>
+            
+
+            
+        </div>
+    </div>
+</footer>
+
+
+<div class="credits">
+    <div class="container">
+        <div class="copyright">
+            <a href="https://github.com/Lednerb" target="_blank">
+                &copy;
+                
+                2018
+                
+                by Lednerb
+            </a>
+            
+        </div>
+        <div class="author">
+            <a href="https://github.com/Lednerb/bilberry-hugo-theme"
+                target="_blank">Bilberry Hugo Theme</a>
+        </div>
+    </div>
+</div>
+
+
+    
+
+    
+
+
+    <script type="text/javascript" src="https://datalovers.xyz/theme.js"></script>
+
+    
+
+    
+</body>
+
+</html>
