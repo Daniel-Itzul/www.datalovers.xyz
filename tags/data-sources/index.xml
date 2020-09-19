@@ -18,7 +18,7 @@
       
       <guid>https://datalovers.xyz/post/power-query-issues-with-local-files-as-data-sources/</guid>
       <description>Power Query is a very versatile way to manage data in Excel. Designing your data workflows to make the most efficient use of Power Query can be challenging though.
-Recently, I needed to built a very simple reporting tool for keeping track on some budget numbers. I had one excel file with raw data called &amp;ldquo;Input&amp;rdquo;, and I built a data analysis workflow on top of it via power query in another file called &amp;ldquo;output&amp;rdquo;.</description>
+Recently, I needed to build a reporting tool for keeping track of some budget numbers. I had one excel file with raw data called &amp;ldquo;Input&amp;rdquo;; and I built a data analysis workflow on top of it via power query in another file called &amp;ldquo;output&amp;rdquo;.</description>
     </item>
     
   </channel>
