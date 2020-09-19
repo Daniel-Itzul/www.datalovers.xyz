@@ -149,37 +149,37 @@
 
     
         <p>Power Query is a very versatile way to manage data in Excel. Designing your data workflows to make the most efficient use of Power Query can be challenging though.</p>
-<p>Recently, I needed to built a very simple reporting tool for keeping track on some budget numbers. I had one excel file with raw data called &ldquo;Input&rdquo;, and I built a data analysis workflow on top of it via power query in another file called &ldquo;output&rdquo;.</p>
-<p>I tested the workflow and I was happy with the results, until I realized several of my colleagues would&rsquo;ve been updating the &ldquo;input&rdquo; file while others looked at the &ldquo;output&rdquo; reports. This would make my entire workflow crash because Power Query cannot run while external data files are open.</p>
+<p>Recently, I needed to build a reporting tool for keeping track of some budget numbers. I had one excel file with raw data called &ldquo;Input&rdquo;; and I built a data analysis workflow on top of it via power query in another file called &ldquo;output&rdquo;.</p>
+<p>I tested the workflow and I was happy with the results until I realized several of my colleagues would&rsquo;ve been updating the &ldquo;input&rdquo; file while others looked at the &ldquo;output&rdquo; reports. This would make my entire workflow crash because Power Query cannot run while external data files are open.</p>
 <p>If this happens to you, the solution is quite straight forward, merging your source and reporting files into one. However, implementing this solution when you already have data in the source file and the Power Query workflow built is a bit tricky. This post tackles this process.</p>
 <h2 id="changing-your-data-source-in-power-query">Changing your data source in Power Query</h2>
-<h3 id="steps-in-the-excel-ui">Steps in the Excel UI</h3>
+<h3 id="steps-excel-power-query-ui">Steps Excel Power Query UI</h3>
 <ol>
-<li>Move the data from “input” file to “output” file.</li>
+<li>Move the raw data from the “input” file to the “output” file.</li>
 <li>Format that data to a table, and name that table as “RawData”</li>
 <li>Within power query, change the “source” file path to the location of the current workbook which is the file “input”.</li>
 </ol>
 <p>I did all of the above.</p>
 <ul>
-<li>Original path to the data source - As external file</li>
+<li>Original path to the data source - As an external file</li>
 </ul>
 <p><img src="/static/img/postImg/JW01_01.png" alt="Original file path is indicating the input file"></p>
 <ul>
 <li>New path to the data source - In the same file the Power Query workflow is set</li>
 </ul>
 <p><img src="/static/img/postImg/JW01_02.png" alt="I then, redirect it to the file location of the output file"></p>
-<p>However, the results were not as expected, actually there were no results at all, since Power Query couldn&rsquo;t find the Data Source.</p>
-<p>After some digging I found the reason. Power Query not only needs to know what file contains your data, but also the table (sheet) in that file that contains your data, duh, I&rsquo;ve should have guessed that. Defining these attributes after your Power Query workflow is built is not as straigth forward though.</p>
-<p>Power Query runs the <a href="https://docs.microsoft.com/en-us/powerquery-m/">M Language</a> behind the scenes. M is a functional language, more on that on other articles (by my husband), this means that is designed to take inputs and produce outputs, much like excel formulas. One of the main inputs Power Query takes is the Source of the data.</p>
-<p>When you create your Power Query workflows Excel generates the M code for you automatically, and defines the data source from the inputs you provided at the time. When, as in our case, you want to make changes after your workflow is already built, you need to change the M code manually.</p>
+<p>However, the results were not as expected since Power Query couldn&rsquo;t find the Data Source.</p>
+<p>After some digging, I found the reason. Power Query not only needs to know what file contains your data but also the table (sheet) in that file that contains your data, duh, I&rsquo;ve should have guessed that. Defining these attributes after your Power Query workflow is built is not as simple as changing attributes in a UI though.</p>
+<p>Power Query runs the <a href="https://docs.microsoft.com/en-us/powerquery-m/">M Language</a> behind the scenes. M is a functional language, more on that on other articles (by Daniel), this means that is designed to take inputs and produce outputs, much like excel formulas. One of the main inputs Power Query takes is the Source of the data.</p>
+<p>When you create your Power Query workflows Excel generates the M code for you automatically and defines the data source from the inputs you provided at the time. When, as in our case, you want to make changes after your workflow is already built, you need to change the M code manually.</p>
 <h3 id="modifying-the-relevant-m-code">Modifying the relevant M code.</h3>
-<p>To acces the M code you need to go to Power Query&rsquo;s advanced editor.</p>
+<p>To access the M code you need to go to Power Query&rsquo;s advanced editor.</p>
 <p><img src="/static/img/postImg/JW01_03.png" alt="Within Query Editor, you can find “Advanced Editor” under the Home ribbon. "></p>
 <p>Let&rsquo;s check what the code is doing.</p>
 <p><img src="/static/img/postImg/JW01_04.png" alt="Editor before changes"></p>
 <ul>
 <li>
-<p>The chunk from lines 1 to 5, that starts with the keyword &ldquo;let&rdquo; is creating four variables. Two of them define our data source and two of them what columns we are going to select and &ldquo;analyze&rdquo; respectively from the data source. For our purpose we care only about the ones that define our data source.</p>
+<p>The chunk from lines 1 to 5, which starts with the keyword &ldquo;let&rdquo; is creating four variables. Two of them define our data source and two of them define the names of fields (based on column headers) and their corresponding type. For our purpose, we care only about the ones that define our data source.</p>
 </li>
 <li>
 <p>Line 2 is defining a variable &ldquo;Source&rdquo; and pointing it to a path.</p>
@@ -193,6 +193,9 @@
 </li>
 <li>
 <p>Since we are currently pointing to the workbook and table (sheet) in one single line, line 3 becomes redundant.</p>
+</li>
+<li>
+<p>However, since the variable originally defined in line 3 was referenced in line 4, line 4 also needs to be changed. We rework that part to reference the variable Source instead of the variable Sheet2_Sheet.</p>
 </li>
 </ul>
 <p><img src="/static/img/postImg/JW01_05.png" alt="Editor after changes"></p>
